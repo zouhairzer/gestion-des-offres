@@ -1,30 +1,3 @@
-<?php
-
-session_start();
-require_once 'dbcon.php';
-require_once 'offres.php';
-
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php"); 
-    exit();
-}
-
-$jobManager = new JobManager($conn);
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['addJob'])) {
-        
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-        $image = $_FILES['image']['name']; 
-
-        
-        $jobManager->addJob($title, $description, $image);
-    }
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a href="contact.php" class="sidebar_link"><img src="img/agent.svg" alt="icon">Contact</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="#" class="sidebar_link"><img src="img/articles.svg" alt="icon">Articles</a>
+                        <a href="articles.php" class="sidebar_link"><img src="img/articles.svg" alt="icon">Articles</a>
                     </li>
 
                 </ul>

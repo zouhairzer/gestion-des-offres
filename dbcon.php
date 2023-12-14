@@ -23,7 +23,7 @@
         }
         
         
-    }
+    }   
     $database = new connection("localhost","root","","offres_des_emplois");  
     $conn=$database->getConnexion();
     

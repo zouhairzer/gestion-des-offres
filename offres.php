@@ -1,27 +1,43 @@
 <?php
 
+include ('dbcon.php');
 
-class JobManager
-{
-    private $db;
+    class InsertOffre
+    { 
+        public function insertion($title, $description, $location)
+        {
+            $database = new connection("localhost","root","","offres_des_emplois");  
+            $conn=$database->getConnexion();
 
-    public function __construct($db)
-    {
-        $this->db = $db;
-    }
-
-    public function addJob($title, $description, $image)
-    {
-        $query = "INSERT INTO jobs (title, description, image) VALUES ('$title', '$description', '$image')";
-
-        $result = mysqli_query($this->db, $query);
-
-        if ($result) {
-            echo "l'offre est ajouter";
-        } else {
-            echo "Error: " . mysqli_error($this->db);
+            $query = "INSERT INTO `jobs`(`title`, `description`,`location`) VALUES('$title', '$description','$location')";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                return 1; 
+            } else {
+                return 0; 
+            }
         }
     }
 
-}
+
+    // class affichage
+    // { 
+    //     public function affiche()
+    //     {
+    //         $database = new connection("localhost","root","","offres_des_emplois");  
+    //         $conn=$database->getConnexion();
+
+    //         $query = "SELECT * FROM jobs";
+    //         $result = mysqli_query();
+    //         if ($result) {
+    //             // header 'location:dashboard/offre.php');
+    //             return 1; 
+    //         } else {
+    //             return 0; 
+    //         }
+    //     }
+    // }
+
 ?>
+
+
