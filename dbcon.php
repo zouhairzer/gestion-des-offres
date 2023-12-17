@@ -20,7 +20,7 @@
             if($conn){
                 echo "Connection established";
             }
-        }
+        } 
         
         
     }   

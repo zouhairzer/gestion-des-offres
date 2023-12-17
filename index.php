@@ -1,3 +1,12 @@
+<?php
+	require 'add_offre.php';
+	$dbOperations = new DbOperations($conn);
+	$offres = $dbOperations->getAllOffres();
+
+	$sql = "SELECT * FROM jobs";
+	$result = mysqli_query($conn, $sql);
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,6 +66,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="login.php">Login</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="login.php">Logout</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -66,73 +78,43 @@
 
 
 
-	<section action="#" method="get" class="search">
+	<section class="search">
 		<h2>Find Your Dream Job</h2>
-		<form class="form-inline">
-			<div class="form-group mb-2">
-				<input type="text" name="keywords" placeholder="Keywords">
-
-
-			</div>
+		<!-- <form class="form-inline" method="POST"> -->
 			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" name="location" placeholder="Location">
+				<input type="text" name="company" placeholder="search by title">
 			</div>
-			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" name="company" placeholder="Company">
-			</div>
-			<button type="submit" class="btn btn-primary mb-2">Search</button>
-		</form>
+			<button type="submit" class="btn btn-primary mb-2" >Search</button>
+		<!-- </form> -->
 	</section>
 
 	<!--------------------------  card  --------------------->
 	<section class="light">
 		<h2 class="text-center py-3">Latest Job Listings</h2>
-		<div class="container py-2">
-
+		<div class="container py-2" >
+		<?php foreach ($offres as $offre) :?>
 			<article class="postcard light green">
 				<a class="postcard__img_link" href="#">
-					<img class="postcard__img" src="https://picsum.photos/300/300" alt="Image Title" />
+					<img class="postcard__img" src="<?= $offre['image_path'];?>" alt="Image Title" />
 				</a>
 				<div class="postcard__text t-dark">
-					<h3 class="postcard__title green"><a href="#">Experienced Web Developer in Python .</a></h3>
+					<h3 class="postcard__title green"><a href="#"><?= $offre['title'];?></a></h3>
 					<div class="postcard__subtitle small">
 						<time datetime="2020-05-25 12:00:00">
-							<i class="fas fa-calendar-alt mr-2"></i>Mon, May 26th 2023
+							<i class="fas fa-calendar-alt mr-2"></i>
 						</time>
 					</div>
 					<div class="postcard__bar"></div>
-					<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim,!</div>
+					<div class="postcard__preview-txt"><?= $offre['description'];?></div>
 					<ul class="postcard__tagbox">
-						<li class="tag__item"><i class="fas fa-tag mr-2"></i>Maroc</li>
-						<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+						<li class="tag__item"><i class="fas fa-tag mr-2"></i><?= $offre['location'];?></li>
 						<li class="tag__item play green">
 							<a href="register.php"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
 						</li>
 					</ul>
 				</div>
 			</article>
-			<article class="postcard light yellow">
-				<a class="postcard__img_link" href="#">
-					<img class="postcard__img" src="https://picsum.photos/300/300" alt="Image Title" />
-				</a>
-				<div class="postcard__text t-dark">
-					<h3 class="postcard__title yellow"><a href="#">Web Designer / Developer</a></h3>
-					<div class="postcard__subtitle small">
-						<time datetime="2020-05-25 12:00:00">
-							<i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2023
-						</time>
-					</div>
-					<div class="postcard__bar"></div>
-					<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim,!</div>
-					<ul class="postcard__tagbox">
-						<li class="tag__item"><i class="fas fa-tag mr-2"></i>France</li>
-						<li class="tag__item"><i class="fas fa-clock mr-2"></i> 3 mins.</li>
-						<li class="tag__item play yellow">
-							<a href="register.php"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
-						</li>
-					</ul>
-				</div>
-			</article>
+			<?php endforeach; ?>
 		</div>
 	</section>
 
@@ -143,6 +125,7 @@
 		<p>© 2023 JobEase </p>
 	</footer>
 </body>
+<script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

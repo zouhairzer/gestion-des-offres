@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_destroy();
 require_once 'usersL.php';
 require_once 'dbcon.php';
 

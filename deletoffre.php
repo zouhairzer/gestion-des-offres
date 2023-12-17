@@ -11,7 +11,7 @@ include ('dbcon.php');
 
             public function deleteJob($jobId)
             {
-                $query = "DELETE FROM  jobs ";
+                $query = "DELETE FROM  jobs WHERE job_id = $jobId";
                 $result = mysqli_query($this->conn, $query);
                 if ($result) {
                     return 1;
@@ -26,7 +26,7 @@ include ('dbcon.php');
             $success = $deleteOperation->deleteJob($jobId);
         
             if ($success) {
-                header ('location:../dashboard/articles.php');
+                header ('location:dashboard/articles.php');
             } else {
                 echo "Failed to delete the job.";
             }

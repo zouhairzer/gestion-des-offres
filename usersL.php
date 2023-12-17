@@ -24,13 +24,13 @@ class UserLogin
                 $_SESSION['role'] = $role;
 
                 if ($role === 'admin') {
-                echo "Admin";
+                    header ('location:dashboard/candidat.php');
                 } 
                 elseif($role === 'candidat') {
-                header ('location:dashboard/candidat.php');
-                }
-            } else{
-                echo "<script>alert('Error1949 You have a default try again');</script>";
+                    header ('location:index.php');
+                }else{
+                    echo "Error1949 You have a default try again";
+            } 
             }
         }
     }

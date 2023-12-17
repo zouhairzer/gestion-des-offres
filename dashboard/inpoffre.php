@@ -1,3 +1,6 @@
+<?php
+  require '../add_offre.php';
+?>
 
 <!DOCTYPE html>
 
@@ -15,18 +18,22 @@
 <div class="container ">
     <div class="wrapper">
     <div class="title" style="background-color:#343a40;"><span>New Project</span></div>
-    <form  method="POST" action="../add_offre.php">
-      <div class="row">
-        <input type="text" name="title" placeholder="title" required>
+    <form  method="POST" action="../add_offre.php" enctype="multipart/form-data">
+      <div >
+        <input type="file" name="img" placeholder="title" value = "<?php if(isset($_GET['job_id'])){echo $image;}?>">
       </div>
       <div class="row">
-        <input type="text" name="description" placeholder="Description"  required>
+        <input type="text" name="title" placeholder="title" value = "<?php if(isset($_GET['job_id'])){echo $title;}?>" required>
+      </div>
+        <input type="hidden" name="jobid" value = "<?php if(isset($_GET['job_id'])){echo $_GET['job_id'];}?>">
+      <div class="row">
+        <input type="text" name="description" placeholder="Description" value = "<?php if(isset($_GET['job_id'])){echo $description;}?>"  required>
       </div>
       <div class="row">
-        <input type="text" name="location" placeholder="location" required>
+        <input type="text" name="location" placeholder="location" value = "<?php if(isset($_GET['job_id'])){echo $location;}?>"  required>
       </div>
       <div class="row button" >
-        <input type="Submit" style="background-color:#343a40;" name="submit">       
+          <input type='Submit' style='background-color:#343a40;' name='submit' > 
       </div>
     </div>
   </div>  

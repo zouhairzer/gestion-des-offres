@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <div class="input-box">
         <select name="role_name" >
-          <option value="admin">admin</option>
           <option value="candidat">candidat</option>
         </select>
       </div>

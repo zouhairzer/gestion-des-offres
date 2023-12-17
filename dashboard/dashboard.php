@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    session_destroy();
+    require_once '../usersL.php';
+    require_once '../dbcon.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,7 +99,7 @@
                             <div class="dropdown-menu dropdown-menu-end position-absolute">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Account Setting</a>
-                                <a class="dropdown-item" href="/PeoplePerTask/project/pages/index.html">Log out</a>
+                                <a class="dropdown-item" href="articles.php">Log out</a>
                             </div>
                         </li>
                     </ul>
