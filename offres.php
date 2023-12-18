@@ -73,8 +73,8 @@ include ('dbcon.php');
                 return 0; 
             }
         }
+        
     
-    }
-
+    }   
     
 ?>

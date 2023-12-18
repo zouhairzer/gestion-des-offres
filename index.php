@@ -78,7 +78,7 @@
     <section class="search">
         <h2>Find Your Dream Job</h2>
         <div class="form-group mx-sm-3 mb-2">
-            <input type="text" name="company" placeholder="Search by title" id="searchInput" onkeyup="search()">
+            <input type="text" name="company" placeholder="Search by title" id="searchInput">
         </div>
         <button type="button" class="btn btn-primary mb-2" onclick="search()">Search</button>
     </section>
@@ -86,7 +86,7 @@
 	<!--------------------------  card  --------------------->
 	<section class="light">
 		<h2 class="text-center py-3">Latest Job Listings</h2>
-		<div class="container py-2" >
+		<div class="container py-2" id="MyDiv">
 		<?php foreach ($offres as $offre) :?>
 			<article class="postcard light green">
 				<a class="postcard__img_link" href="#">
@@ -120,7 +120,7 @@
 		<p>© 2023 JobEase </p>
 	</footer>
 </body>
-<script src="script2.js"></script>
+<script src="search.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
