@@ -1,7 +1,20 @@
 <?php
-  require '../add_offre.php';
-?>
+require 'add_offre.php';
 
+$updateOperations = new updateOffres($conn);
+$update = $updateOperations->update($jobid);
+
+
+if (isset($_GET['job_id'])) {
+  $jobid  = $_GET['job_id'];
+  $query = "SELECT * FROM jobs where job_id = '$jobid'"; 
+  $result = mysqli_query($this->conn, $query); 
+  $rows = mysqli_fetch_assoc($quer);
+  $title = $rows['title'];
+  $description = $rows['description'];
+  $location = $rows['location'];
+}
+?>
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -18,22 +31,26 @@
 <div class="container ">
     <div class="wrapper">
     <div class="title" style="background-color:#343a40;"><span>New Project</span></div>
-    <form  method="POST" action="../add_offre.php" enctype="multipart/form-data">
-      <div >
-        <input type="file" name="img" placeholder="title" value = "<?php if(isset($_GET['job_id'])){echo $image;}?>">
+    <form  method="POST" action="../add_offre.php">
+      <div class="row">
+        <input type="text" name="title" placeholder="title" required>
       </div>
       <div class="row">
-        <input type="text" name="title" placeholder="title" value = "<?php if(isset($_GET['job_id'])){echo $title;}?>" required>
-      </div>
-        <input type="hidden" name="jobid" value = "<?php if(isset($_GET['job_id'])){echo $_GET['job_id'];}?>">
-      <div class="row">
-        <input type="text" name="description" placeholder="Description" value = "<?php if(isset($_GET['job_id'])){echo $description;}?>"  required>
+        <input type="text" name="description" placeholder="Description"  required>
       </div>
       <div class="row">
-        <input type="text" name="location" placeholder="location" value = "<?php if(isset($_GET['job_id'])){echo $location;}?>"  required>
+        <input type="text" name="location" placeholder="location" required>
       </div>
       <div class="row button" >
-          <input type='Submit' style='background-color:#343a40;' name='submit' > 
+        <button type="Submit" style="background-color:#343a40;" name="submit">
+          <?php
+                if(isset($_GET['job_id'])){
+                    echo "Modifier";
+                } else {
+                    echo "Envoyer";
+                }
+            ?>
+        </button>
       </div>
     </div>
   </div>  
